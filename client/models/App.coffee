@@ -7,4 +7,13 @@ class window.App extends Backbone.Model
     @set 'dealerHand', deck.dealDealer()
 
   playDealer: ->
-    console.log 'hii'
+    do @get('dealerHand').at(0).flip
+    possibleScores = do @get('dealerHand').scores
+    score = @bestScore possibleScores
+    while score < 17
+      do @get('dealerHand').hit
+      possibleScores = do @get('dealerHand').scores
+      score = @bestScore possibleScores
+
+  bestScore: (possibleScores) ->
+    possibleScores[0]

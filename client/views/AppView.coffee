@@ -15,11 +15,8 @@ class window.AppView extends Backbone.View
     @model.get('playerHand').on 'stand', =>
       #   run the dealer
       #   if dealer's hand is
-      do @playDealer
-      # @model.get('dealerHand')
+      do @model.playDealer
 
-  playDealer: ->
-    console.log 'hii'
 
   render: ->
     @$el.children().detach()

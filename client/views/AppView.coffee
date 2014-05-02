@@ -16,6 +16,13 @@ class window.AppView extends Backbone.View
       #   run the dealer
       #   if dealer's hand is
       do @model.playDealer
+      do @model.scoreGame
+
+    @model.on 'playerWins', =>
+      alert 'PLAYER WINS'
+
+    @model.on 'dealerWins', =>
+      alert 'DEALER WINS'
 
 
   render: ->

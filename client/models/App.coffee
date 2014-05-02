@@ -8,12 +8,16 @@ class window.App extends Backbone.Model
 
   playDealer: ->
     do @get('dealerHand').at(0).flip
-    possibleScores = do @get('dealerHand').scores
-    score = @bestScore possibleScores
+    score = do @get('dealerHand').bestScore
     while score < 17
       do @get('dealerHand').hit
-      possibleScores = do @get('dealerHand').scores
-      score = @bestScore possibleScores
+      score = do @get('dealerHand').bestScore
 
-  bestScore: (possibleScores) ->
-    possibleScores[0]
+  scoreGame: ->
+    playerScore = do @get('playerHand').bestScore
+    dealerScore = do @get('dealerHand').bestScore
+    console.log playerScore, dealerScore
+    if playerScore <= 21 and (playerScore > dealerScore or dealerScore > 21)
+      @trigger 'playerWins'
+    else
+      @trigger 'dealerWins'

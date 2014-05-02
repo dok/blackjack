@@ -3,9 +3,15 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
+    @canHit = true
 
   hit: ->
-    @add(@deck.pop()).last()
+    @add(@deck.pop()).last() if @canHit
+
+  stand: ->
+    @canHit = false
+    # trigger the stand event
+    @trigger 'stand', @
 
   scores: ->
     # The scores are an array of potential scores.

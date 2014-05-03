@@ -24,6 +24,14 @@ class window.AppView extends Backbone.View
     @model.on 'dealerWins', =>
       alert 'DEALER WINS'
 
+    @model.get('playerHand').on 'bust', =>
+      alert 'BUST: DEALER WINSSS'
+
+    @model.get('dealerHand').on 'bust', =>
+      alert 'BUST: PLAYA WINSSS'
+
+    if @model.get 'blackJack'
+      alert 'BLACK JACK'
 
   render: ->
     @$el.children().detach()

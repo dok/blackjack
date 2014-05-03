@@ -6,6 +6,13 @@ class window.App extends Backbone.Model
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
 
+    if @get('playerHand').blackJack
+      @set 'blackJack': true
+    # if @.get('playerHand').bestScore() is 21
+    #   console.log('test')
+    #   @trigger 'blackJack', @
+    #   @.get('playerHand').canHit = false
+
   playDealer: ->
     do @get('dealerHand').at(0).flip
     score = do @get('dealerHand').bestScore
